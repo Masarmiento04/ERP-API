@@ -4,19 +4,25 @@ const cors = require('cors');
 const sanitizeHtml = require('sanitize-html');
 const dotenv = require('dotenv');
 
+
+const loginRouter = require('./routes/loginRoutes');
+
 dotenv.config();
 
 const app = express();
 
 // Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(cors());
-app.use(express.json());
 
 // Routes
+const apiRouter = process.env.APIROUTER
 app.get('/', (req, res) => {
     res.send('API is running...');
 });
+app.use(apiRouter, loginRouter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
