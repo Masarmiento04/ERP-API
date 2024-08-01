@@ -4,8 +4,9 @@ const cors = require('cors');
 const sanitizeHtml = require('sanitize-html');
 const dotenv = require('dotenv');
 
-
-const loginRouter = require('./routes/loginRoutes');
+//Rutas
+const loginRouter = require('./routes/login.routes');
+const userRouter = require('./routes/user.routes');
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
     res.send('API is running...');
 });
 app.use(apiRouter, loginRouter);
+app.use(apiRouter, userRouter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const db = require('./index'); // Ajusta la ruta según tu estructura de proyecto
-const EntidadBancaria = require('./EntidadBancariaModel');
+const EntidadBancaria = require('./entidadBancaria.model');
 
 const Banco = db.sequelize.define('Banco', {
   Id_Banco: {

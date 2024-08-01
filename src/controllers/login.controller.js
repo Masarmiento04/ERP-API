@@ -1,4 +1,4 @@
-const Usuario = require('../models/UsuarioModel');
+const Usuario = require('../models/usuario.model');
 const md5 = require('md5');
 const sanitizeHtml = require('sanitize-html');
 
@@ -9,11 +9,14 @@ exports.getSesion = async (req, res) => {
         const sanitizeLogin = sanitizeHtml(login);
         const sanitizeClave = sanitizeHtml(clave);
 
+        //console.log(`Usuario: ${sanitizeLogin} y la Clave: ${sanitizeClave}`);
+
         //Buscar el usuario
         const usuario = await Usuario.findOne(
             {
                 where: {
                     Login: sanitizeLogin,
+                    Clave: md5(sanitizeClave)
                 }
             }
         );
@@ -22,14 +25,18 @@ exports.getSesion = async (req, res) => {
         if (!usuario) {
             return res.status(401).json({ message: 'Credenciales incorrectas' });
         }
-        
-        //Validar la contraseña
-        if(md5(sanitizeClave) !== Usuario.clave){
-            return res.status(401).json({ message: 'Credenciales incorrectas' });
-        }
 
         //Login exitoso
-        res.json({ message: 'Sesión iniciada' });
+        res.json({ 
+            Message: 'Sesión iniciada',
+            Usuario: {
+                CodigoUsuario: usuario.CodigoUsuario,
+                Identificacion: usuario.Identificacion,
+                NombreUsuario: usuario.NombreUsuario,
+                CargoUsuario: usuario.CargoUsuario,
+                Estado: usuario.Estado
+            }
+        });
 
     } catch (error) {
         console.log('Falla en LoginController', error);

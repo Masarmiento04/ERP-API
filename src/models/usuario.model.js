@@ -48,6 +48,7 @@ const Usuario = db.sequelize.define('Usuario',
         Estado: {
             type: DataTypes.BOOLEAN,
             allowNull: true,
+            defaultValue: true
         },
     },
     {
