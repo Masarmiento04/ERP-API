@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 //Rutas
 const loginRouter = require('./routes/login.routes');
 const userRouter = require('./routes/user.routes');
+const paymentRouter = require('./routes/payment.routes');
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
 });
 app.use(apiRouter, loginRouter);
 app.use(apiRouter, userRouter);
+app.use(apiRouter, paymentRouter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

@@ -23,4 +23,13 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+// db.Banco = require('./banco.model');
+// db.Cartera = require('./cartera.model');
+// db.DocumentoCartera = require('./documentoCartera.model');
+// db.DetalleDocumentoCartera = require('./detalleDocumentoCartera.model');
+// db.Empresa = require('./empresa.model');
+// db.EntidadBancaria = require('./entidadBancaria.model');
+// db.FormaPago = require('./formaPago.model');
+// db.Usuario = require('./usuario.model');
+
 module.exports = db;

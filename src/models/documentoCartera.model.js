@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const db = require('./index'); // Ajusta la ruta según tu estructura de proyecto
-const Banco = require('./BancoModel'); // Ajusta la ruta según sea necesario
-const FormaPago = require('./FormaPagoModel'); // Ajusta la ruta según sea necesario
+const Banco = require('./banco.model'); // Ajusta la ruta según sea necesario
+const FormaPago = require('./formaPago.model'); // Ajusta la ruta según sea necesario
 
 const DocumentoCartera = db.sequelize.define('DocumentoCartera', {
   Id_DocumentoCartera: {
@@ -154,8 +154,7 @@ const DocumentoCartera = db.sequelize.define('DocumentoCartera', {
   },
 }, {
   tableName: 'DocumentoCartera',
-  timestamps: false,
-  schema: 'dbo', // Especifica el esquema si es necesario
+  time: 'dbo', // Especifica el esquema si es necesario
   freezeTableName: true, // Para evitar que Sequelize pluralice el nombre de la tabla
 });
 
